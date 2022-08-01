@@ -106,8 +106,8 @@ async function getPrincipalForUserPerPair(user: string, pairAddress: string) {
  * @param positionT1 // '' at the end of the window
  */
 export function getMetricsForPositionWindow(positionT0: Position, positionT1: Position): ReturnMetrics {
-  console.log('positionT0', positionT0)
-  console.log('positionT1', positionT1)
+  // console.log('positionT0', positionT0)
+  // console.log('positionT1', positionT1)
   positionT0 = formatPricesForEarlyTimestamps(positionT0)
   positionT1 = formatPricesForEarlyTimestamps(positionT1)
 

@@ -98,7 +98,7 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
   } else if (address?.toLowerCase() === '0x2e1ad108ff1d8c782fcbbb89aad783ac49586756'.toLowerCase()) {
     path = 'https://assets.coingecko.com/coins/images/3449/small/tusd.png'
   } else {
-    const list = DEFAULT_TOKEN_LIST.tokens.filter((x) => x.address.toLowerCase() === address.toLowerCase())
+    const list = DEFAULT_TOKEN_LIST.tokens.filter((x) => (address && x.address.toLowerCase() === address?.toLowerCase()))
     path =
       list.length > 0
         ? list[0].logoURI
