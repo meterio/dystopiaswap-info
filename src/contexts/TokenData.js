@@ -236,12 +236,12 @@ const getTopTokens = async (ethPrice, ethPriceOld) => {
       fetchPolicy: 'network-only',
       variables: { date: currentDate },
     })
-    console.log('tokenids', tokenids)
+    // console.log('tokenids', tokenids)
     const ids = tokenids?.data?.tokenDayDatas?.reduce((accum, entry) => {
       accum.push(entry.id.slice(0, 42))
       return accum
     }, [])
-    console.log('ids', ids)
+    // console.log('ids', ids)
     let current = await client.query({
       query: TOKENS_HISTORICAL_BULK(ids),
       fetchPolicy: 'cache-first',
@@ -313,7 +313,7 @@ const getTopTokens = async (ethPrice, ethPriceOld) => {
             oneDayHistory?.derivedETH ? oneDayHistory?.derivedETH * ethPriceOld : 0
           )
 
-          console.log('token data', data)
+          // console.log('token data', data)
           // set data
           data.priceUSD = data?.derivedETH * ethPrice
           data.totalLiquidityUSD = currentLiquidityUSD
@@ -555,7 +555,7 @@ const getIntervalTokenData = async (tokenAddress, startTime, interval = 3600, la
     }
 
     let result = await splitQuery(PRICES_BY_BLOCK, client, [tokenAddress], blocks, 50)
-    console.log('PRICES_BY_BLOCK', result)
+    // console.log('PRICES_BY_BLOCK', result)
 
     // format token ETH price results
     let values = []

@@ -268,10 +268,10 @@ async function getGlobalData(ethPrice, oldEthPrice) {
     })
     const twoWeekData = twoWeekResult.data.uniswapFactories[0]
 
-    console.log('global data, data', data)
-    console.log('global data, oneDayData', oneDayData)
-    console.log('global data, twoDayData', twoDayData)
-    console.log('global data, twoWeekData', twoWeekData)
+    // console.log('global data, data', data)
+    // console.log('global data, oneDayData', oneDayData)
+    // console.log('global data, twoDayData', twoDayData)
+    // console.log('global data, twoWeekData', twoWeekData)
 
     if (data && oneDayData && twoDayData && twoWeekData) {
       let [oneDayVolumeUSD, volumeChangeUSD] = get2DayPercentChange(
@@ -562,7 +562,7 @@ export function useGlobalData() {
   const [state, { update, updateAllPairsInUniswap, updateAllTokensInUniswap }] = useGlobalDataContext()
   const [ethPrice, oldEthPrice] = useEthPrice()
 
-  console.log('global state', state)
+  // console.log('global state', state)
 
   const data = state?.globalData
 
@@ -572,7 +572,7 @@ export function useGlobalData() {
     async function fetchData() {
       let globalData = await getGlobalData(ethPrice, oldEthPrice)
 
-      console.log('global data', globalData)
+      // console.log('global data', globalData)
 
       globalData && update(globalData)
 

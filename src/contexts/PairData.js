@@ -256,7 +256,7 @@ async function getBulkPairData(pairList, ethPrice) {
 }
 
 function parseData(data, oneDayData, twoDayData, oneWeekData, ethPrice, oneDayBlock) {
-  console.log('PARSE DATA', data, oneDayData, twoDayData, oneWeekData, ethPrice, oneDayBlock)
+  // console.log('PARSE DATA', data, oneDayData, twoDayData, oneWeekData, ethPrice, oneDayBlock)
   const pairAddress = data.id
 
   // get volume changes
@@ -352,7 +352,7 @@ const getPairChartData = async (pairAddress) => {
         },
         fetchPolicy: 'cache-first',
       })
-      console.log('PAIR RESULT CHART', result)
+      // console.log('PAIR RESULT CHART', result)
       skip += 1000
       data = data.concat(result.data.pairDayDatas)
       if (result.data.pairDayDatas.length < 1000) {
