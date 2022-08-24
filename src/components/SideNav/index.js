@@ -164,12 +164,12 @@ function SideNav({ history }) {
           </AutoColumn>
           <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
             <HeaderText>
-              <Link href="https://dystopia.exchange" target="_blank">
-                Dystopia.exchange
+              <Link href="https://vs3.surge.sh" target="_blank">
+                Voltswap.exchange
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://docs.dystopia.exchange" target="_blank">
+              <Link href="https://docs.voltswap.finance/" target="_blank">
                 Docs
               </Link>
             </HeaderText>

@@ -72,10 +72,10 @@ export default function Warning({ type, show, setShow, address }) {
                 fontWeight={500}
                 lineHeight={'145.23%'}
                 color={'#2172E5'}
-                href={'https://polygonscan.com//address/' + address}
+                href={'https://scan.meter.io/address/' + address}
                 target="_blank"
               >
-                View {type === 'token' ? 'token' : 'pair'} contract on Polygonscan
+                View {type === 'token' ? 'token' : 'pair'} contract on Meterscan
               </Link>
             </Hover>
             <RowBetween style={{ marginTop: '20px' }}>
@@ -92,10 +92,10 @@ export default function Warning({ type, show, setShow, address }) {
                 fontWeight={500}
                 lineHeight={'145.23%'}
                 color={'#2172E5'}
-                href={'https://polygonscan.com//address/' + address}
+                href={'https://scan.meter.io//address/' + address}
                 target="_blank"
               >
-                View {type === 'token' ? 'token' : 'pair'} contract on Polygonscan
+                View {type === 'token' ? 'token' : 'pair'} contract on Meterscan
               </Link>
             </Hover>
             <ButtonDark color={'#f82d3a'} style={{ minWidth: '140px' }} onClick={() => setShow(false)}>
