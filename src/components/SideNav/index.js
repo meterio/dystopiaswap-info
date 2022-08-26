@@ -165,7 +165,7 @@ function SideNav({ history }) {
           <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
             <HeaderText>
               <Link href="https://vs3.surge.sh" target="_blank">
-                Voltswap.exchange
+                Voltswap.finance
               </Link>
             </HeaderText>
             <HeaderText>
@@ -174,12 +174,12 @@ function SideNav({ history }) {
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://discord.com/invite/gNMqms9H27" target="_blank">
+              <Link href="https://discord.gg/XZgZsCn" target="_blank">
                 Discord
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://twitter.com/dystopiaswap" target="_blank">
+              <Link href="https://twitter.com/Meter_IO" target="_blank">
                 Twitter
               </Link>
             </HeaderText>

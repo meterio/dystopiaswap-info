@@ -40,16 +40,15 @@ export function getTimeframe(timeWindow) {
 export function getPoolLink(token0Address, token1Address = null, remove = false) {
   if (!token1Address) {
     return (
-      `https://dystopia.exchange/#/` +
+      `http://localhost:3000/` +
       (remove ? `remove` : `add`) +
-      `/${token0Address === '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270' ? 'MATIC' : token0Address}/${'MATIC'}`
+      `/${token0Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token0Address}/${'MTR'}`
     )
   } else {
     return (
-      `https://dystopia.exchange/#/` +
+      `http://localhost:3000/#/` +
       (remove ? `remove` : `add`) +
-      `/${token0Address === '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270' ? 'MATIC' : token0Address}/${
-        token1Address === '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270' ? 'MATIC' : token1Address
+      `/${token0Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token0Address}/${token1Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token1Address
       }`
     )
   }
@@ -57,16 +56,15 @@ export function getPoolLink(token0Address, token1Address = null, remove = false)
 
 export function getSwapLink(token0Address, token1Address = null) {
   if (!token1Address) {
-    return `https://dystopia.exchange/#/swap?inputCurrency=${token0Address}`
+    return `http://vs3.surge.sh/swap?inputCurrency=${token0Address}`
   } else {
-    return `https://dystopia.exchange/#/swap?inputCurrency=${
-      token0Address === '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270' ? 'MATIC' : token0Address
-    }&outputCurrency=${token1Address === '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270' ? 'MATIC' : token1Address}`
+    return `http://vs3.surge.sh/swap?inputCurrency=${token0Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token0Address
+      }&outputCurrency=${token1Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token1Address}`
   }
 }
 
 export function getDAppLink(linkVariable) {
-  let baseUniswapUrl = 'https://dystopia.exchange/#/uni'
+  let baseUniswapUrl = 'https://vs3.surge.sh/#/uni'
   if (!linkVariable) {
     return baseUniswapUrl
   }
@@ -299,10 +297,10 @@ export const setThemeColor = (theme) => document.documentElement.style.setProper
 export const Big = (number) => new BigNumber(number)
 
 export const urls = {
-  showTransaction: (tx) => `https://polygonscan.com/tx/${tx}/`,
-  showAddress: (address) => `https://polygonscan.com/address/${address}/`,
-  showToken: (address) => `https://polygonscan.com/token/${address}/`,
-  showBlock: (block) => `https://polygonscan.com/block/${block}/`,
+  showTransaction: (tx) => `https://scan-warringstakes.meter.io/tx/${tx}/`,
+  showAddress: (address) => `https://scan-warringstakes.meter.io/address/${address}/`,
+  showToken: (address) => `https://scan-warringstakes.meter.io/${address}/`,
+  showBlock: (block) => `https://scan-warringstakes.meter.io/${block}/`,
 }
 
 export const formatTime = (unix) => {
