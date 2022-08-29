@@ -8,7 +8,7 @@ import { GET_BLOCK, GET_BLOCKS, SHARE_VALUE } from '../apollo/queries'
 import { Text } from 'rebass'
 import _Decimal from 'decimal.js-light'
 import toFormat from 'toformat'
-import { timeframeOptions } from '../constants'
+import { timeframeOptions, SWAP_URL, WMTR_ADDR } from '../constants'
 import Numeral from 'numeral'
 
 // format libraries
@@ -37,34 +37,31 @@ export function getTimeframe(timeWindow) {
   return utcStartTime
 }
 
-export function getPoolLink(token0Address, token1Address = null, remove = false) {
-  if (!token1Address) {
+export function getPoolLink(address, isPairAddr = false, remove = false) {
+  if (isPairAddr) {
     return (
-      `http://localhost:3000/` +
-      (remove ? `remove` : `add`) +
-      `/${token0Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token0Address}/${'MTR'}`
+      `${SWAP_URL}liquidity/${address}` +
+      `?remove=${!!remove ? 1 : 0}`
     )
   } else {
     return (
-      `http://localhost:3000/#/` +
-      (remove ? `remove` : `add`) +
-      `/${token0Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token0Address}/${token1Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token1Address
-      }`
+      `${SWAP_URL}liquidity/create` +
+      `?address=${address === WMTR_ADDR ? 'MTR' : address}`
     )
   }
 }
 
 export function getSwapLink(token0Address, token1Address = null) {
   if (!token1Address) {
-    return `http://vs3.surge.sh/swap?inputCurrency=${token0Address}`
+    return `${SWAP_URL}swap?inputCurrency=${token0Address}`
   } else {
-    return `http://vs3.surge.sh/swap?inputCurrency=${token0Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token0Address
-      }&outputCurrency=${token1Address === '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271' ? 'MTR' : token1Address}`
+    return `${SWAP_URL}swap?inputCurrency=${token0Address === WMTR_ADDR ? 'MTR' : token0Address
+      }&outputCurrency=${token1Address === WMTR_ADDR ? 'MTR' : token1Address}`
   }
 }
 
 export function getDAppLink(linkVariable) {
-  let baseUniswapUrl = 'https://vs3.surge.sh/#/uni'
+  let baseUniswapUrl = `${SWAP_URL}#/uni`
   if (!linkVariable) {
     return baseUniswapUrl
   }

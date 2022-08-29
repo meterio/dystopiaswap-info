@@ -43,3 +43,18 @@ export const TRACKED_OVERRIDES = [
   '0x45c32fA6DF82ead1e2EF74d17b76547EDdFaFF89'.toLowerCase(), // FRAX
   '0x236eeC6359fb44CCe8f97E99387aa7F8cd5cdE1f'.toLowerCase(), // USD+
 ]
+
+const isTestnet = process.env.REACT_APP_NETWORK === 'testnet'
+
+let swapURL = ''
+let scanURL = 'https://scan.meter.io/'
+let wmtrAddr = ''.toLowerCase()
+if (isTestnet) {
+  swapURL = 'https://vs3.surge.sh/'
+  scanURL = 'https://scan-warringstakes.meter.io/'
+  wmtrAddr = '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271'.toLowerCase()
+}
+
+export const SWAP_URL = swapURL
+export const SCAN_URL = scanURL
+export const WMTR_ADDR = wmtrAddr
