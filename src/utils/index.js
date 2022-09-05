@@ -8,7 +8,7 @@ import { GET_BLOCK, GET_BLOCKS, SHARE_VALUE } from '../apollo/queries'
 import { Text } from 'rebass'
 import _Decimal from 'decimal.js-light'
 import toFormat from 'toformat'
-import { timeframeOptions, SWAP_URL, WMTR_ADDR } from '../constants'
+import { timeframeOptions, SWAP_URL, WMTR_ADDR, SCAN_URL } from '../constants'
 import Numeral from 'numeral'
 
 // format libraries
@@ -279,7 +279,7 @@ export const toNiceDateYear = (date) => dayjs.utc(dayjs.unix(date)).format('MMMM
 
 export const isAddress = (value) => {
   try {
-    return ethers.utils.getAddress(value.toLowerCase())
+    return ethers.utils.getAddress(value.toLowerCase()).toLowerCase()
   } catch {
     return false
   }
@@ -294,10 +294,10 @@ export const setThemeColor = (theme) => document.documentElement.style.setProper
 export const Big = (number) => new BigNumber(number)
 
 export const urls = {
-  showTransaction: (tx) => `https://scan-warringstakes.meter.io/tx/${tx}/`,
-  showAddress: (address) => `https://scan-warringstakes.meter.io/address/${address}/`,
-  showToken: (address) => `https://scan-warringstakes.meter.io/${address}/`,
-  showBlock: (block) => `https://scan-warringstakes.meter.io/${block}/`,
+  showTransaction: (tx) => `${SCAN_URL}tx/${tx}`,
+  showAddress: (address) => `${SCAN_URL}address/${address}`,
+  showToken: (address) => `${SCAN_URL}address/${address}`,
+  showBlock: (block) => `${SCAN_URL}block/${block}`,
 }
 
 export const formatTime = (unix) => {

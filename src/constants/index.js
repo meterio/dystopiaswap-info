@@ -44,7 +44,7 @@ export const TRACKED_OVERRIDES = [
   '0x236eeC6359fb44CCe8f97E99387aa7F8cd5cdE1f'.toLowerCase(), // USD+
 ]
 
-const isTestnet = process.env.REACT_APP_NETWORK === 'testnet'
+export const isTestnet = process.env.REACT_APP_NETWORK === 'testnet'
 
 let swapURL = ''
 let scanURL = 'https://scan.meter.io/'

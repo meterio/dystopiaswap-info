@@ -1,3 +1,5 @@
+import { WMTR_ADDR } from "../constants"
+
 interface BasicData {
   token0?: {
     id: string
@@ -15,9 +17,9 @@ interface BasicData {
 // names since entitiy was created in subgraph
 // keys are lowercase token addresses <--------
 const TOKEN_OVERRIDES: { [address: string]: { name: string; symbol: string } } = {
-  '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270': {
-    name: 'Matic (Wrapped)',
-    symbol: 'MATIC',
+  [WMTR_ADDR]: {
+    name: 'Meter Stable',
+    symbol: 'MTR',
   },
 }
 
