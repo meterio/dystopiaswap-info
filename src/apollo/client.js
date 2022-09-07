@@ -1,10 +1,11 @@
 import { ApolloClient } from 'apollo-client'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 import { HttpLink } from 'apollo-link-http'
+import { BLOCK_CLIENT, CLIENT, HEALTH_CLIENT } from '../constants'
 
 export const client = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://graphtest.meter.io/subgraphs/name/meterio/solidly-subgraph',
+    uri: CLIENT,
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,
@@ -12,7 +13,7 @@ export const client = new ApolloClient({
 
 export const healthClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://graphtest.meter.io:8031/graphql',
+    uri: HEALTH_CLIENT,
   }),
   cache: new InMemoryCache(),
   shouldBatch: true,
@@ -28,7 +29,7 @@ export const stakingClient = new ApolloClient({
 
 export const blockClient = new ApolloClient({
   link: new HttpLink({
-    uri: 'https://graphtest.meter.io/subgraphs/name/blocklytics/meter-solidly-blocks',
+    uri: BLOCK_CLIENT,
   }),
   cache: new InMemoryCache(),
 })
