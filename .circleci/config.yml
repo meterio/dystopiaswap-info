@@ -30,7 +30,7 @@ jobs:
           command: aws s3 sync ./build/ s3://charts.voltswap/ --delete --acl public-read
       - run:
           name: invalidation
-          command: aws cloudfront create-invalidation --distribution-id E124FBD9U4SMTK --paths "/*"
+          command: aws cloudfront create-invalidation --distribution-id E2QDV58B71BGQI --paths "/*"
       - slack/notify:
           event: fail
           mentions: "UE72CTLEB,UB19CQM8W,U01UP0AH5CK"
