@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useMemo, useCallback, useState, useEffect } from 'react'
-import { timeframeOptions } from '../constants'
+import { timeframeOptions, WMTR_ADDR } from '../constants'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { healthClient } from '../apollo/client'
@@ -271,7 +271,7 @@ export function useListedTokens() {
     async function fetchList() {
       const allFetched = DEFAULT_TOKEN_LIST
       let formatted = allFetched?.tokens?.map((t) => t.address.toLowerCase())
-      updateSupportedTokens(formatted)
+      updateSupportedTokens([...formatted, WMTR_ADDR])
     }
     if (!supportedTokens) {
       fetchList()
