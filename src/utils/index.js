@@ -164,7 +164,9 @@ export async function getBlocksFromTimestamps(timestamps, skipCount = 500) {
   }
 
   let fetchedData = await splitQuery(GET_BLOCKS, blockClient, [], timestamps, skipCount)
-
+  if (timestamps.length === 3) {
+    console.log('fetchedData', fetchedData)
+  }
   let blocks = []
   if (fetchedData) {
     for (var t in fetchedData) {
