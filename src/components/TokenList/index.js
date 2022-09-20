@@ -168,9 +168,18 @@ function TopTokenList({ tokens, itemMax = 10, useTracked = false }) {
           if (sortedColumn === SORT_FIELD.SYMBOL || sortedColumn === SORT_FIELD.NAME) {
             return a[sortedColumn] > b[sortedColumn] ? (sortDirection ? -1 : 1) * 1 : (sortDirection ? -1 : 1) * -1
           }
-          return parseFloat(a[sortedColumn]) > parseFloat(b[sortedColumn])
-            ? (sortDirection ? -1 : 1) * 1
-            : (sortDirection ? -1 : 1) * -1
+          if (parseFloat(a[sortedColumn]) > parseFloat(b[sortedColumn])) {
+            return sortDirection ? -1 : 1
+          } else if (parseFloat(a[sortedColumn]) === parseFloat(b[sortedColumn])) {
+            if (sortedColumn !== SORT_FIELD.LIQ) {
+              return parseFloat(a[SORT_FIELD.LIQ]) > parseFloat(b[SORT_FIELD.LIQ])
+                ? (sortDirection ? -1 : 1) * 1
+                : (sortDirection ? -1 : 1) * -1
+            }
+            return sortDirection ? 1 : -1
+          } else {
+            return sortDirection ? 1 : -1
+          }
         })
         .slice(itemMax * (page - 1), page * itemMax)
     )
