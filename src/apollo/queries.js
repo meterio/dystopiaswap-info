@@ -728,7 +728,7 @@ const TokenFields = `
 // used for getting top tokens by daily volume
 export const TOKEN_TOP_DAY_DATAS = gql`
   query tokenDayDatas($date: Int) {
-    tokenDayDatas(first: 50, orderBy: totalLiquidityUSD, orderDirection: desc, where: { date_gt: $date }) {
+    tokenDayDatas(first: 100, orderBy: totalLiquidityUSD, orderDirection: desc, where: { date_gt: $date }) {
       id
       date
     }
