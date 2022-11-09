@@ -472,3 +472,7 @@ export function isEquivalent(a, b) {
   }
   return true
 }
+
+export const getStableRatioPrice = (x, y) => {
+  return (y * (y * y + 3 * x * x)) / (x * (x * x + 3 * y * y))
+}

@@ -19,7 +19,7 @@ import TxnList from '../components/TxnList'
 import Loader from '../components/LocalLoader'
 import { BasicLink } from '../components/Link'
 import Search from '../components/Search'
-import { formattedNum, formattedPercent, getPoolLink, getSwapLink, shortenAddress } from '../utils'
+import { formattedNum, formattedPercent, getPoolLink, getStableRatioPrice, getSwapLink, shortenAddress } from '../utils'
 import { useColor } from '../hooks'
 import { usePairData, usePairTransactions } from '../contexts/PairData'
 import { TYPE, ThemedBackground } from '../Theme'
@@ -171,8 +171,20 @@ function PairPage({ pairAddress, history }) {
     token1?.derivedETH && ethPrice ? formattedNum(parseFloat(token1.derivedETH) * parseFloat(ethPrice), true) : ''
 
   // rates
-  const token0Rate = reserve0 && reserve1 ? formattedNum(reserve1 / reserve0) : '-'
-  const token1Rate = reserve0 && reserve1 ? formattedNum(reserve0 / reserve1) : '-'
+  let token0Rate = '-'
+  let token1Rate = '-'
+  if (reserve0 && reserve1) {
+    const stableCoinSymbol = ['BUSD.bsc', 'USDC.eth', 'USDT.eth']
+    if (stableCoinSymbol.includes(token0.symbol) && stableCoinSymbol.includes(token1.symbol)) {
+      const r0 = getStableRatioPrice(reserve1, reserve0)
+      const r1 = getStableRatioPrice(reserve0, reserve1)
+      token0Rate = formattedNum(r0)
+      token1Rate = formattedNum(r1)
+    } else {
+      token0Rate = formattedNum(reserve1 / reserve0)
+      token1Rate = formattedNum(reserve0 / reserve1)
+    }
+  }
 
   // formatted symbols for overflow
   const formattedSymbol0 = token0?.symbol.length > 6 ? token0?.symbol.slice(0, 5) + '...' : token0?.symbol
