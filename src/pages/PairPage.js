@@ -178,8 +178,8 @@ function PairPage({ pairAddress, history }) {
     if (stableCoinSymbol.includes(token0.symbol) && stableCoinSymbol.includes(token1.symbol)) {
       const r0 = getStableRatioPrice(reserve1, reserve0)
       const r1 = getStableRatioPrice(reserve0, reserve1)
-      token0Rate = formattedNum(r0)
-      token1Rate = formattedNum(r1)
+      token0Rate = formattedNum(r1)
+      token1Rate = formattedNum(r0)
     } else {
       token0Rate = formattedNum(reserve1 / reserve0)
       token1Rate = formattedNum(reserve0 / reserve1)
