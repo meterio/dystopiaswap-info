@@ -13,7 +13,7 @@ import { isAddress } from '../../utils/index.js'
 // import tetuQiLogo from '../../assets/tetuQi.svg'
 // import dystopialogo from '../../assets/dystopialogo.png'
 import DEFAULT_TOKEN_LIST from '../../constants/token_list.json'
-import { isTestnet, WMTR_ADDR } from '../../constants/index.js'
+import { WMTR_ADDR } from '../../constants/index.js'
 
 const BAD_IMAGES = {}
 
@@ -55,13 +55,13 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
 
   let path
   if (address?.toLowerCase() === WMTR_ADDR) {
-    path = 'https://raw.githubusercontent.com/meterio/token-list/master/data/MTR/logo.png'
+    path = 'https://raw.githubusercontent.com/meterio/token-list/master/data/TFUEL/logo.png'
   } else {
     const list = DEFAULT_TOKEN_LIST.tokens.filter((x) => (address && x.address.toLowerCase() === address?.toLowerCase()))
     path =
       list.length > 0
         ? list[0].logoURI
-        : `https://raw.githubusercontent.com/meterio/token-list/master/generated/token-logos/${isTestnet ? 'metertest' : 'meter'}/${isAddress(
+        : `https://raw.githubusercontent.com/meterio/token-list/master/generated/token-logos/theta/${isAddress(
           address
         )}.png`
   }

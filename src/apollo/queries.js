@@ -3,7 +3,7 @@ import { BUNDLE_ID } from '../constants'
 
 export const SUBGRAPH_HEALTH = gql`
   query health {
-    indexingStatusForCurrentVersion(subgraphName: "meterio/voltswapv2-subgraph") {
+    indexingStatusForCurrentVersion(subgraphName: "theta/voltswapv2-subgraph") {
       synced
       health
       chains {

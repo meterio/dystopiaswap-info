@@ -48,7 +48,7 @@ export default function GlobalStats() {
               }}
               style={{ position: 'relative' }}
             >
-              MTRG Price: <Medium>{formattedEthPrice}</Medium>
+              TFuel Price: <Medium>{formattedEthPrice}</Medium>
               {showPriceCard && <UniPrice />}
             </TYPE.main>
           )}

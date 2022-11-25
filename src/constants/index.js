@@ -44,27 +44,24 @@ export const TRACKED_OVERRIDES = [
   '0x236eeC6359fb44CCe8f97E99387aa7F8cd5cdE1f'.toLowerCase(), // USD+
 ]
 
-export const isTestnet = process.env.REACT_APP_NETWORK === 'testnet'
+// export const isTestnet = process.env.REACT_APP_NETWORK === 'testnet'
 
 let swapURL = 'https://voltswap.finance/'
 let scanURL = 'https://scan.meter.io/'
-let wmtrAddr = '0x160361ce13ec33C993b5cCA8f62B6864943eb083'.toLowerCase()
+let wmtrAddr = '0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e'.toLowerCase() //wtfuel
 
-let client = 'https://graph-meter.voltswap.finance/subgraphs/name/meterio/voltswapv2-subgraph'
-// let client = 'https://graph.meter.io/subgraphs/name/meterio/voltswapv2-subgraph'
-let healthClient = 'https://graph-meter.voltswap.finance:8031/graphql'
-// let healthClient = 'https://graph.meter.io:8031/graphql'
-let blockClient = 'https://graph-meter.voltswap.finance/subgraphs/name/meter/blocks'
-// let blockClient = 'https://graph.meter.io/subgraphs/name/meter/blocks'
-if (isTestnet) {
-  swapURL = 'https://vs3.surge.sh/'
-  scanURL = 'https://scan-warringstakes.meter.io/'
-  wmtrAddr = '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271'.toLowerCase()
+let client = 'https://graph-theta.voltswap.finance/subgraphs/name/theta/voltswapv2-subgraph'
+let healthClient = 'https://graph-theta.voltswap.finance:8031/graphql'
+let blockClient = 'https://graph-theta.voltswap.finance/subgraphs/name/blocklytics/theta-blocks'
+// if (isTestnet) {
+//   swapURL = 'https://vs3.surge.sh/'
+//   scanURL = 'https://scan-warringstakes.meter.io/'
+//   wmtrAddr = '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271'.toLowerCase()
 
-  client = 'https://graphtest.meter.io/subgraphs/name/meterio/solidly-subgraph'
-  healthClient = 'https://graphtest.meter.io:8031/graphql'
-  blockClient = 'https://graphtest.meter.io/subgraphs/name/blocklytics/meter-solidly-blocks'
-}
+//   client = 'https://graphtest.meter.io/subgraphs/name/meterio/solidly-subgraph'
+//   healthClient = 'https://graphtest.meter.io:8031/graphql'
+//   blockClient = 'https://graphtest.meter.io/subgraphs/name/blocklytics/meter-solidly-blocks'
+// }
 
 export const SWAP_URL = swapURL
 export const SCAN_URL = scanURL
