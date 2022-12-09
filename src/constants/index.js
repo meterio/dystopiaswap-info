@@ -47,7 +47,7 @@ export const TRACKED_OVERRIDES = [
 // export const isTestnet = process.env.REACT_APP_NETWORK === 'testnet'
 
 let swapURL = 'https://voltswap.finance/'
-let scanURL = 'https://scan.meter.io/'
+let scanURL = 'https://explorer.thetatoken.org/'
 let wmtrAddr = '0x4Dc08B15ea0e10B96c41Aec22fAB934bA15C983e'.toLowerCase() //wtfuel
 
 let client = 'https://graph-theta.voltswap.finance/subgraphs/name/theta/voltswapv2-subgraph'

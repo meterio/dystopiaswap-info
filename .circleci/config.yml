@@ -29,10 +29,10 @@ jobs:
           command: REACT_APP_NETWORK=mainnet yarn build
       - run:
           name: s3 sync
-          command: aws s3 sync ./build/ s3://charts.voltswap/ --delete --acl public-read
+          command: aws s3 sync ./build/ s3://charts-theta.voltswap/ --delete --acl public-read
       - run:
           name: invalidation
-          command: aws cloudfront create-invalidation --distribution-id E2QDV58B71BGQI --paths "/*"
+          command: aws cloudfront create-invalidation --distribution-id EDW7H7XBA731A --paths "/*"
       - slack/notify:
           event: fail
           mentions: "UE72CTLEB,UB19CQM8W,U01UP0AH5CK"
