@@ -63,6 +63,7 @@ let blockClient = 'https://graph-theta.voltswap.finance/subgraphs/name/blocklyti
 //   blockClient = 'https://graphtest.meter.io/subgraphs/name/blocklytics/meter-solidly-blocks'
 // }
 
+export const TOKEN_LIST_URL = 'https://raw.githubusercontent.com/meterio/token-list/master/generated/voltswapv2-tokens.json'
 export const SWAP_URL = swapURL
 export const SCAN_URL = scanURL
 export const WMTR_ADDR = wmtrAddr
