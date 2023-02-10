@@ -4,13 +4,12 @@ import Vibrant from 'node-vibrant'
 import { hex } from 'wcag-contrast'
 import { isAddress } from '../utils'
 import copy from 'copy-to-clipboard'
+import { isTestnet } from '../constants/index.js'
 
 export function useColor(tokenAddress, token) {
   const [color, setColor] = useState('#2172E5')
   if (tokenAddress) {
-    const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/polygon/assets/${isAddress(
-      tokenAddress
-    )}/logo.png`
+    const path = `https://raw.githubusercontent.com/meterio/token-list/master/generated/token-logos/${isTestnet ? 'metertest' : 'meter'}/${isAddress(tokenAddress)}.png`
     if (path) {
       Vibrant.from(path).getPalette((err, palette) => {
         if (palette && palette.Vibrant) {

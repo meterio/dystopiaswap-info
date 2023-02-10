@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useReducer, useMemo, useCallback, useState, useEffect } from 'react'
-import { timeframeOptions, WMTR_ADDR } from '../constants'
+import { timeframeOptions, TOKEN_LIST_URL, WMTR_ADDR } from '../constants'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import { healthClient } from '../apollo/client'
 import { SUBGRAPH_HEALTH } from '../apollo/queries'
-import DEFAULT_TOKEN_LIST from '../constants/token_list.json'
+import axios from 'axios'
 dayjs.extend(utc)
 
 const UPDATE = 'UPDATE'
@@ -269,9 +269,14 @@ export function useListedTokens() {
 
   useEffect(() => {
     async function fetchList() {
-      const allFetched = DEFAULT_TOKEN_LIST
-      let formatted = allFetched?.tokens?.map((t) => t.address.toLowerCase())
-      updateSupportedTokens([...formatted, WMTR_ADDR])
+      try {
+        const allFetched = (await axios.get(TOKEN_LIST_URL)).data
+        let formatted = allFetched?.tokens?.map((t) => t.address.toLowerCase())
+        updateSupportedTokens([...formatted, WMTR_ADDR])
+      } catch (e) {
+        console.log('get error when get supported tokens from github', e.message)
+        updateSupportedTokens([WMTR_ADDR])
+      }
     }
     if (!supportedTokens) {
       fetchList()
