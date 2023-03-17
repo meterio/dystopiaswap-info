@@ -61,7 +61,7 @@ if (isTestnet) {
   scanURL = 'https://scan-warringstakes.meter.io/'
   wmtrAddr = '0xfAC315d105E5A7fe2174B3EB1f95C257A9A5e271'.toLowerCase()
 
-  client = 'https://graphtest.meter.io/subgraphs/name/meterio/solidly-subgraph'
+  client = 'https://graphtest.meter.io/subgraphs/name/meterio/voltswapv2-subgraph'
   healthClient = 'https://graphtest.meter.io:8031/graphql'
   blockClient = 'https://graphtest.meter.io/subgraphs/name/blocklytics/meter-solidly-blocks'
 }
