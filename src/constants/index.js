@@ -1,5 +1,6 @@
 export const BUNDLE_ID = '1'
-export const FEE = 0.00025
+export const FEE = 0.003
+export const STABEL_FEE = 0.0004
 
 export const timeframeOptions = {
   WEEK: '1 week',
