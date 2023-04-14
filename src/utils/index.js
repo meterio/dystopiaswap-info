@@ -8,7 +8,7 @@ import { GET_BLOCK, GET_BLOCKS, SHARE_VALUE } from '../apollo/queries'
 import { Text } from 'rebass'
 import _Decimal from 'decimal.js-light'
 import toFormat from 'toformat'
-import { timeframeOptions, SWAP_URL, WMTR_ADDR, SCAN_URL } from '../constants'
+import { timeframeOptions, SWAP_URL, WMTR_ADDR, SCAN_URL, STABEL_FEE, FEE } from '../constants'
 import Numeral from 'numeral'
 
 // format libraries
@@ -475,4 +475,12 @@ export function isEquivalent(a, b) {
 
 export const getStableRatioPrice = (x, y) => {
   return (y * (y * y + 3 * x * x)) / (x * (x * x + 3 * y * y))
+}
+
+export const getSwapFee = (isStable) => {
+  if (isStable) {
+    return STABEL_FEE
+  } else {
+    return FEE
+  }
 }

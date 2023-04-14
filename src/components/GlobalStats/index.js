@@ -3,11 +3,14 @@ import styled from 'styled-components'
 import { RowFixed, RowBetween } from '../Row'
 import { useMedia } from 'react-use'
 import { useGlobalData, useEthPrice } from '../../contexts/GlobalData'
-import { formattedNum, localNumber } from '../../utils'
+import { formattedNum, getSwapFee, localNumber } from '../../utils'
 
 import UniPrice from '../UniPrice'
 import { TYPE } from '../../Theme'
-import { FEE } from '../../constants'
+// import { FEE } from '../../constants'
+
+import { useAllPairData } from '../../contexts/PairData'
+import BigNumber from 'bignumber.js'
 
 const Header = styled.div`
   width: 100%;
@@ -28,10 +31,21 @@ export default function GlobalStats() {
 
   const [showPriceCard, setShowPriceCard] = useState(false)
 
+  const allPairs = useAllPairData()
+
+  let _oneDayFees = new BigNumber(0)
+  for (const p of Object.values(allPairs)) {
+    const swapFee = getSwapFee(p.isStable)
+    const fee = BigNumber(p.oneDayVolumeUSD).times(swapFee)
+    _oneDayFees = _oneDayFees.plus(fee)
+  }
+
+  // eslint-disable-next-line
   const { oneDayVolumeUSD, oneDayTxns, pairCount } = useGlobalData()
   const [ethPrice] = useEthPrice()
   const formattedEthPrice = ethPrice ? formattedNum(ethPrice, true) : '-'
-  const oneDayFees = oneDayVolumeUSD ? formattedNum(oneDayVolumeUSD * FEE, true) : ''
+  // const oneDayFees = oneDayVolumeUSD ? formattedNum(oneDayVolumeUSD * FEE, true) : ''
+  const oneDayFees = formattedNum(_oneDayFees.toFixed(), true)
 
   return (
     <Header>

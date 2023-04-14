@@ -594,6 +594,7 @@ const PairFields = `
   fragment PairFields on Pair {
     id
     symbol
+    isStable
     txCount
     token0 {
       id
