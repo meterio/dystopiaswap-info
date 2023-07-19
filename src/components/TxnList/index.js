@@ -232,6 +232,18 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
             newTxn.token1Symbol = updateNameData(swap.pair).token0.symbol
             newTxn.token0Amount = Math.abs(netToken1)
             newTxn.token1Amount = Math.abs(netToken0)
+          } else {
+            if (swap.amount1Out === '0') {
+              newTxn.token0Symbol = updateNameData(swap.pair).token0.symbol
+              newTxn.token1Symbol = updateNameData(swap.pair).token1.symbol
+              newTxn.token0Amount = swap.amount0Out
+              newTxn.token1Amount = swap.amount1In
+            } else {
+              newTxn.token0Symbol = updateNameData(swap.pair).token1.symbol
+              newTxn.token1Symbol = updateNameData(swap.pair).token0.symbol
+              newTxn.token0Amount = swap.amount1Out
+              newTxn.token1Amount = swap.amount0In
+            }
           }
 
           newTxn.hash = swap.transaction.id
@@ -276,7 +288,7 @@ function TxnList({ transactions, symbol0Override, symbol1Override, color }) {
           : (sortDirection ? -1 : 1) * -1
       })
       .slice(ITEMS_PER_PAGE * (page - 1), page * ITEMS_PER_PAGE)
-
+  console.log('filteredList', filteredList)
   const below1080 = useMedia('(max-width: 1080px)')
   const below780 = useMedia('(max-width: 780px)')
 
