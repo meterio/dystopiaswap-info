@@ -18,8 +18,8 @@ interface BasicData {
 // keys are lowercase token addresses <--------
 const TOKEN_OVERRIDES: { [address: string]: { name: string; symbol: string } } = {
   [WMTR_ADDR]: {
-    name: 'Meter Stable',
-    symbol: 'MTR',
+    name: 'Ether',
+    symbol: 'ETH',
   },
 }
 

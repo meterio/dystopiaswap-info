@@ -48,15 +48,12 @@ export const TRACKED_OVERRIDES = [
 export const isTestnet = process.env.REACT_APP_NETWORK === 'testnet'
 
 let swapURL = 'https://voltswap.finance/'
-let scanURL = 'https://scan.meter.io/'
-let wmtrAddr = '0x160361ce13ec33C993b5cCA8f62B6864943eb083'.toLowerCase()
+let scanURL = 'https://basescan.org/'
+let wmtrAddr = '0x4200000000000000000000000000000000000006'.toLowerCase()
 
-let client = 'https://graph-meter.voltswap.finance/subgraphs/name/meterio/voltswapv2-subgraph'
-// let client = 'https://graph.meter.io/subgraphs/name/meterio/voltswapv2-subgraph'
-let healthClient = 'https://graph-meter.voltswap.finance:8031/graphql'
-// let healthClient = 'https://graph.meter.io:8031/graphql'
-let blockClient = 'https://graph-meter.voltswap.finance/subgraphs/name/meter/blocks'
-// let blockClient = 'https://graph.meter.io/subgraphs/name/meter/blocks'
+let client = 'https://api.studio.thegraph.com/query/50539/voltswap-finance/version/latest'
+let healthClient = 'https://api.thegraph.com/index-node/graphql'
+let blockClient = 'https://api.studio.thegraph.com/query/32073/blocks-base/v0.0.1'
 if (isTestnet) {
   swapURL = 'https://vs3.surge.sh/'
   scanURL = 'https://scan-warringstakes.meter.io/'

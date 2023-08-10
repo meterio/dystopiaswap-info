@@ -68,20 +68,20 @@ function reducer(state, { type, payload }) {
       const { topPairs } = payload
       let added = {}
       topPairs.map((pair) => {
-        const regex = new RegExp("WMTR", "g");
-        const regex1 = new RegExp("Wrapped MTR", "g");
+        const regex = new RegExp("WETH", "g");
+        const regex1 = new RegExp("Wrapped ETH", "g");
         const _pair = {
           ...pair,
-          symbol: pair.symbol.replace(regex, "MTR"),
+          symbol: pair.symbol.replace(regex, "ETH"),
           token0: {
             ...pair.token0,
-            symbol: pair.token0.symbol.replace(regex, "MTR"),
-            name: pair.token0.name.replace(regex1, "MTR")
+            symbol: pair.token0.symbol.replace(regex, "ETH"),
+            name: pair.token0.name.replace(regex1, "ETH")
           },
           token1: {
             ...pair.token1,
-            symbol: pair.token1.symbol.replace(regex, "MTR"),
-            name: pair.token1.name.replace(regex1, "Meter Stable")
+            symbol: pair.token1.symbol.replace(regex, "ETH"),
+            name: pair.token1.name.replace(regex1, "Ether")
           }
         }
         return (added[pair.id] = _pair)

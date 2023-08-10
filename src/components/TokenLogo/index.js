@@ -54,9 +54,9 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
 
   let path
   if (address?.toLowerCase() === WMTR_ADDR) {
-    path = 'https://raw.githubusercontent.com/meterio/token-list/master/data/MTR/logo.png'
+    path = 'https://raw.githubusercontent.com/meterio/token-list/master/data/ETH/logo.png'
   } else {
-    path = `https://raw.githubusercontent.com/meterio/token-list/master/generated/token-logos/${isTestnet ? 'metertest' : 'meter'}/${isAddress(address)}.png`
+    path = `https://raw.githubusercontent.com/meterio/token-list/master/generated/token-logos/${isTestnet ? 'basetest' : 'base'}/${isAddress(address)}.png`
   }
 
   return (
