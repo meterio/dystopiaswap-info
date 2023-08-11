@@ -48,9 +48,9 @@ workflows:
           context:
             - aws-2023
             - slack-secrets
-          filters:
-            tags:
-              only: /^v.*/
+          # filters:
+          #   tags:
+          #     only: /^v.*/
             branches:
               only:
                 - base
