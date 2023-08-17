@@ -64,7 +64,7 @@ function reducer(state, { type, payload }) {
       topTokens &&
         topTokens.map((token) => {
           const regex = new RegExp("WMTR", "g");
-          const regex1 = new RegExp("Wrapped MTR", "g");
+          const regex1 = new RegExp("Wrapped MTR$", "g");
           const _token = {
             ...token,
             symbol: token.symbol.replace(regex, "MTR"),
