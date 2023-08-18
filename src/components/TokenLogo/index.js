@@ -12,6 +12,7 @@ import { isAddress } from '../../utils/index.js'
 // import clamLogo from '../../assets/clam.png'
 // import tetuQiLogo from '../../assets/tetuQi.svg'
 // import dystopialogo from '../../assets/dystopialogo.png'
+// eslint-disable-next-line
 import { isTestnet, WMTR_ADDR } from '../../constants/index.js'
 
 const BAD_IMAGES = {}
@@ -56,7 +57,7 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
   if (address?.toLowerCase() === WMTR_ADDR) {
     path = 'https://raw.githubusercontent.com/meterio/token-list/master/data/ETH/logo.png'
   } else {
-    path = `https://raw.githubusercontent.com/meterio/token-list/master/generated/token-logos/${isTestnet ? 'basetest' : 'base'}/${isAddress(address)}.png`
+    path = `https://raw.githubusercontent.com/meterio/token-list/master/voltswap-tokens/logos/base/${isAddress(address)}.png`
   }
 
   return (
