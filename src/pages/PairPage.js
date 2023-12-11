@@ -174,7 +174,7 @@ function PairPage({ pairAddress, history }) {
   let token0Rate = '-'
   let token1Rate = '-'
   if (reserve0 && reserve1) {
-    const stableCoinSymbol = ['BUSD.bsc', 'USDC.eth', 'USDT.eth']
+    const stableCoinSymbol = ['BUSD.bsc', 'USDC.eth', 'USDT.eth', 'suUSD']
     if (stableCoinSymbol.includes(token0.symbol) && stableCoinSymbol.includes(token1.symbol)) {
       const r0 = getStableRatioPrice(reserve1, reserve0)
       const r1 = getStableRatioPrice(reserve0, reserve1)

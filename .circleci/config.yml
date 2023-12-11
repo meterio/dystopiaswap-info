@@ -52,5 +52,4 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              only:
-                - meter
+              ignore: /.*/
