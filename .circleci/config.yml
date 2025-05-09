@@ -1,24 +1,31 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.7.0
+  node: circleci/node@7.0.0
   slack: circleci/slack@4.4.4
 jobs:
   build_and_deploy_mainnet:
+    resource_class: large
     docker:
-      - image: "cimg/node:14.17"
+      - image: 'cimg/node:14.17'
+    environment:
+      DEPLOY_HOST: 34.53.102.108
+      DEPLOY_FOLDER: charts-voltswap-finance
+      SSH_OPTIONS: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:48o4O3yWCP1MbjxhyGvDL+NNUsYcRJVodZjzg7nV0C4"
+      - run:
+          name: install rsync
+          command: |
+            sudo apt-get update 
+            sudo apt-get install -y rsync
       - checkout
-      - run:
-          name: download & unzip awscli v2
-          command: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip
-      - run:
-          name: install awscli v2
-          command: sudo ./aws/install
       - restore_cache:
           key: voltswapinfo-deps-{{ checksum "package.json" }}
       - run:
-          name: install yarn dependencies
+          name: install npm dependencies
           command: yarn
       - save_cache:
           key: voltswapinfo-deps-{{ checksum "package.json" }}
@@ -28,14 +35,12 @@ jobs:
           name: production build
           command: REACT_APP_NETWORK=mainnet yarn build
       - run:
-          name: s3 sync
-          command: aws s3 sync ./build/ s3://charts-voltswap-finance/ --delete
-      - run:
-          name: invalidation
-          command: aws cloudfront create-invalidation --distribution-id EYXUVTG4SD2MK --paths "/*"
+          name: deploy
+          command: |
+            rsync -e "ssh $SSH_OPTIONS" -rzvh --delete ./build/ root@$DEPLOY_HOST:/var/www/$DEPLOY_FOLDER/
+            ssh $SSH_OPTIONS root@$DEPLOY_HOST "service nginx restart"
       - slack/notify:
           event: fail
-          mentions: "UE72CTLEB,UB19CQM8W,U01UP0AH5CK"
           template: basic_fail_1
       - slack/notify:
           event: pass
@@ -46,7 +51,6 @@ workflows:
     jobs:
       - build_and_deploy_mainnet:
           context:
-            - aws-2023
             - slack-secrets
           filters:
             tags:
