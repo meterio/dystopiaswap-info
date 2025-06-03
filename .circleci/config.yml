@@ -1,0 +1,52 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7.0
+  slack: circleci/slack@4.4.4
+jobs:
+  build_and_deploy_mainnet:
+    docker:
+      - image: "cimg/node:14.17"
+    environment:
+      DEPLOY_HOST: 34.53.102.108
+      DEPLOY_FOLDER: charts-voltswap-finance
+      SSH_OPTIONS: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+    steps:
+      - checkout
+      - restore_cache:
+          key: voltswapinfo-deps-{{ checksum "package.json" }}
+      - run:
+          name: install yarn dependencies
+          command: yarn
+      - save_cache:
+          key: voltswapinfo-deps-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: production build
+          command: REACT_APP_NETWORK=mainnet yarn build
+      - run:
+          name: deploy
+          command: |
+            rsync -e "ssh $SSH_OPTIONS" -rzvh --delete ./dist/ root@$DEPLOY_HOST:/var/www/$DEPLOY_FOLDER/
+            ssh $SSH_OPTIONS root@$DEPLOY_HOST "service nginx restart"
+      - slack/notify:
+          event: fail
+          mentions: "UE72CTLEB,UB19CQM8W,U01UP0AH5CK"
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: basic_success_1
+
+workflows:
+  fresh_deploy:
+    jobs:
+      - build_and_deploy_mainnet:
+          context:
+            - slack-secrets
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              only:
+                - meter
